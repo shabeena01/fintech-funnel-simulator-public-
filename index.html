@@ -33,6 +33,17 @@
 
 <body>
   <h1>Fintech Funnel Simulator</h1>
+  <button onclick="startUser()">Start New User</button>
+<script>
+  function startUser(){
+    posthog.reset();
+    const id = 'user_' + Math.random().toString(36).slice(2,7);
+    posthog.identify(id);
+    posthog.setPersonProperties({ plan: 'free' });
+    console.log('New user:', id);
+  }
+</script>
+
   <button onclick="trackEvent('signup')">1) signup</button>
   <button onclick="trackEvent('add_payment_method')">2) add_payment_method</button>
   <button onclick="trackEvent('fund_wallet')">3) fund_wallet</button>
