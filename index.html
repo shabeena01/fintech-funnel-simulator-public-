@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8" />
   <title>Fintech Funnel Simulator</title>
-  <script src="https://unpkg.com/posthog-js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Official PostHog loader: defines window.posthog -->
   <script>
-    posthog.init("phc_By2SVZiSoMg5S2JMG3rZDknm4xDydcwq2m3WP6PTIsK", { api_host: "https://us.i.posthog.com" });
-    function trackEvent(event) {
-      posthog.capture(event);
-      console.log("Event tracked:", event);
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){
+    function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),
+    t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}
+    (o=t.createElement("script")).type="text/javascript",o.async=!0,
+    o.src=s.api_host+"/static/array.js",(n=t.getElementsByTagName("script")[0]).parentNode.insertBefore(o,n);
+    var u=e;g(u,"init");g(u,"capture");g(u,"identify");g(u,"reset");g(u,"setPersonProperties");
+    e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  // 🔑 use your own key + correct region host
+  posthog.init("phc_By2SVZiSoMg5S2JMG3rZDknm4xDydcwq2m3WP6PTIsK", { api_host: "https://us.posthog.com" });
+  </script>
+
+  <script>
+    // helpers
+    function trackEvent(name, props={}) {
+      posthog.capture(name, props);
+      console.log("Event tracked:", name, props);
     }
     function resetUser() {
       posthog.reset();
@@ -15,6 +30,7 @@
     }
   </script>
 </head>
+
 <body>
   <h1>Fintech Funnel Simulator</h1>
   <button onclick="trackEvent('signup')">1) signup</button>
