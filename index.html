@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fintech Funnel Simulator</title>
+  <script src="https://unpkg.com/posthog-js"></script>
+  <script>
+    posthog.init("phc_By2SVZiSoMg5S2JMG3rZDknm4xDydcwq2m3WP6PTIsK", { api_host: "https://app.posthog.com" });
+    function trackEvent(event) {
+      posthog.capture(event);
+      console.log("Event tracked:", event);
+    }
+    function resetUser() {
+      posthog.reset();
+      console.log("User reset");
+    }
+  </script>
+</head>
+<body>
+  <h1>Fintech Funnel Simulator</h1>
+  <button onclick="trackEvent('signup')">1) signup</button>
+  <button onclick="trackEvent('add_payment_method')">2) add_payment_method</button>
+  <button onclick="trackEvent('fund_wallet')">3) fund_wallet</button>
+  <button onclick="trackEvent('transaction_success')">4) transaction_success</button>
+  <button onclick="resetUser()">♻️ Reset User</button>
+  <p>Open PostHog → Funnels: signup → add_payment_method → fund_wallet → transaction_success</p>
+</body>
+</html>
